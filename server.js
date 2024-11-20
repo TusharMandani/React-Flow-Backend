@@ -1,6 +1,7 @@
 const express = require('express');
 const dotenv = require('dotenv');
 const connectDB = require('./server/config/connection');
+const userRoutes = require('./server/routes/user.route');
 
 // Load environment variables
 dotenv.config();
@@ -17,10 +18,8 @@ const app = express();
 app.use(express.json());
 
 // Routes
+app.use('/auth', userRoutes);
 
-// app.get('/', (req, res) => {
-//     res.send('Hello');
-// });
 
 // Start the server
 app.listen(PORT, () => {
