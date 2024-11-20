@@ -18,11 +18,11 @@ const userSchema = new mongoose.Schema({
         required: true,
         minlength: 6,
     },
-    // role: {
-    //     type: String,
-    //     enum: ['user', 'admin'],
-    //     default: 'user',
-    // },
+    role: {
+        type: String,
+        enum: ['user', 'admin'],
+        default: 'user',
+    },
 },
     { timestamps: true }
 );
@@ -38,6 +38,5 @@ userSchema.pre('save', async function (next) {
 userSchema.methods.comparePassword = async function (password) {
     return await bcrypt.compare(password, this.password);
 };
-
 
 module.exports = mongoose.model('User', userSchema);
