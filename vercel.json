@@ -1,0 +1,43 @@
+{
+    "version": 2,
+    "builds": [
+      {
+        "src": "package.json",
+        "use": "@vercel/node"
+      }
+    ],
+    "routes": [
+      {
+        "src": "/api/(.*)",
+        "dest": "/api/index.js"
+      }
+    ],
+    "rewrites": [
+      {
+        "source": "/custom-path",
+        "destination": "/index.html"
+      }
+    ],
+    "redirects": [
+      {
+        "source": "/old-page",
+        "destination": "/new-page",
+        "permanent": true
+      }
+    ],
+    "headers": [
+      {
+        "source": "/api/(.*)",
+        "headers": [
+          {
+            "key": "Access-Control-Allow-Origin",
+            "value": "*"
+          }
+        ]
+      }
+    ],
+    "env": {
+      "CUSTOM_ENV_VARIABLE": "value"
+    }
+  }
+  
